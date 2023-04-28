@@ -1,15 +1,17 @@
 import random
+ 
+list_guessed = []
 
 while True:
-    list_guessed = []
-    liczba_losowa = random.randint(1, 20)
 
+    liczba_losowa = random.randint(1, 10)
+    tries = 0
     while True:
-        x = input("Find number between 1 - 20 (press Q to quit): ")
-
+        x = input("Find number between 1 - 10 (press Q to quit): ")
+        tries += 1
         if x.lower() == 'q':
-            print("Thanks for playing!")
-            exit()
+            print("\nThanks for playing!")
+            break
 
         try:
             x = int(x)
@@ -21,17 +23,19 @@ while True:
             print("You guessed!")
             list_guessed.append(x)
             liczba_losowa = random.randint(1, 20)  # generuje nową losową liczbę
+            print("You guessed in", tries, "tries.")
             break  # przerywa pętlę, gdy użytkownik trafi liczbę
         elif x < liczba_losowa:
             print("Too small number")
         else:
             print("Too big number")
 
-    print("You guessed in", len(list_guessed), "tries.")
-
     
+    
+    if(x == 'q'):
+        break
 
-print("\n guessed numbers: ")
+
+print("\nGuessed numbers: ")
 for i in list_guessed:
     print(i, end=" ")
-# we want if number is guessed number append it to list 
